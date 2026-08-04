@@ -1,0 +1,6 @@
+# Material bruto e rascunhos — não fazem parte do site publicado
+material/
+*.zip
+index claude design.html
+.impeccable/
+.DS_Store
