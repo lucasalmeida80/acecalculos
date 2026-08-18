@@ -4,6 +4,31 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <!-- Google tag (gtag.js) — Google Ads -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18388636462"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-18388636462');
+  </script>
+
+  <!-- Event snippet for Cliques no Whatsapp conversion page -->
+  <script>
+  function gtag_report_conversion(url) {
+    var callback = function () {
+      if (typeof(url) != 'undefined') {
+        window.location = url;
+      }
+    };
+    gtag('event', 'conversion', {
+        'send_to': 'AW-18388636462/erIpCO6p4uMcEK6mscBE',
+        'event_callback': callback
+    });
+    return false;
+  }
+  </script>
+
   <title>ACE Consultoria — Contador em Manaus | INSS de Obras, Cálculos Revisionais e Regularização</title>
   <meta name="description" content="Consultoria contábil e pericial em Manaus com quase 40 anos de experiência. Regularização de INSS de obras (SERO), cálculos revisionais bancários e trabalhistas, regularização de imóveis. Atendimento em todo o Brasil." />
   <meta name="keywords" content="contador Manaus, INSS de obras, regularização INSS obras, SERO, cálculo revisional bancário, cálculo trabalhista, regularização imóveis, consultoria contábil Manaus, perito INSS obras, ACE Antunes Consultoria" />
@@ -773,7 +798,7 @@
 
     .contato-grid {
       display: grid;
-      grid-template-columns: 1.1fr .9fr;
+      grid-template-columns: .9fr 1.1fr;
       gap: 64px;
       align-items: start;
     }
@@ -847,11 +872,13 @@
       justify-content: center;
       padding: 14px 20px;
       border-radius: 999px;
+      font-family: inherit;
       font-weight: 500;
       font-size: 14px;
       text-decoration: none;
       transition: all .2s;
       width: 100%;
+      cursor: pointer;
     }
     .btn-whatsapp {
       background: #25d366;
@@ -934,6 +961,173 @@
       letter-spacing: .08em;
       color: rgba(255,255,255,.4);
       gap: 16px; flex-wrap: wrap;
+    }
+
+    /* ─────────── MODAL DE CONTATO ─────────── */
+    .fc-overlay {
+      position: fixed; inset: 0; z-index: 10000;
+      background: rgba(4, 20, 30, .78);
+      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 24px;
+      opacity: 0; visibility: hidden;
+      transition: opacity .25s ease, visibility .25s ease;
+      overflow-y: auto;
+    }
+    .fc-overlay.open { opacity: 1; visibility: visible; }
+    .fc-card {
+      position: relative;
+      width: 100%; max-width: 460px;
+      background: #0e2b3a;
+      border: 1px solid rgba(127,225,236,.18);
+      border-radius: 10px;
+      padding: 40px 36px 36px;
+      box-shadow: 0 30px 80px rgba(0,0,0,.55);
+      transform: translateY(14px) scale(.98);
+      transition: transform .28s cubic-bezier(.22,1,.36,1);
+      margin: auto;
+    }
+    .fc-overlay.open .fc-card { transform: none; }
+    .fc-close {
+      position: absolute; top: 14px; right: 14px;
+      width: 34px; height: 34px;
+      display: flex; align-items: center; justify-content: center;
+      background: transparent; border: 0; cursor: pointer;
+      color: rgba(255,255,255,.5); border-radius: 50%;
+      transition: all .2s;
+    }
+    .fc-close:hover { color: var(--white); background: rgba(255,255,255,.08); }
+    .fc-close svg { width: 18px; height: 18px; }
+    .fc-title {
+      font-family: var(--serif);
+      font-size: 30px; font-weight: 400; line-height: 1.15;
+      letter-spacing: -.015em;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+    .fc-title em { font-style: italic; color: var(--cyan-lt); }
+    .fc-sub {
+      font-size: 14px; line-height: 1.55;
+      color: rgba(255,255,255,.6);
+      margin-bottom: 26px;
+    }
+    .fc-field { margin-bottom: 12px; }
+    .fc-input, .fc-textarea {
+      width: 100%;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 8px;
+      padding: 14px 16px;
+      font-family: inherit;
+      font-size: 15px;
+      color: var(--white);
+      transition: border-color .2s, background .2s;
+      -webkit-appearance: none;
+    }
+    .fc-textarea { min-height: 110px; resize: vertical; line-height: 1.5; }
+    .fc-input::placeholder, .fc-textarea::placeholder { color: rgba(255,255,255,.38); }
+    .fc-input:focus, .fc-textarea:focus {
+      outline: none;
+      border-color: var(--cyan);
+      background: rgba(41,191,211,.07);
+    }
+    .fc-phone { display: flex; align-items: stretch; }
+    .fc-ddi {
+      display: flex; align-items: center; gap: 6px;
+      padding: 0 12px 0 14px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.14);
+      border-right: 0;
+      border-radius: 8px 0 0 8px;
+      font-family: var(--mono);
+      font-size: 13px;
+      color: rgba(255,255,255,.7);
+      white-space: nowrap;
+    }
+    .fc-ddi .flag { font-size: 16px; line-height: 1; }
+    .fc-phone .fc-input { border-radius: 0 8px 8px 0; }
+    .fc-erro {
+      display: none;
+      font-family: var(--mono);
+      font-size: 11px; letter-spacing: .04em;
+      color: #ff9d9d;
+      margin: 2px 0 8px 2px;
+    }
+    .fc-field.invalido .fc-input,
+    .fc-field.invalido .fc-textarea,
+    .fc-field.invalido .fc-ddi { border-color: rgba(255,120,120,.6); }
+    .fc-field.invalido .fc-erro { display: block; }
+    .fc-submit {
+      width: 100%;
+      margin-top: 14px;
+      padding: 16px 20px;
+      border: 0; border-radius: 999px;
+      background: var(--cyan);
+      color: #062430;
+      font-family: inherit;
+      font-size: 15px; font-weight: 600;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      transition: background .2s, transform .2s;
+    }
+    .fc-submit:hover { background: var(--cyan-lt); transform: translateY(-1px); }
+    .fc-submit svg { width: 17px; height: 17px; }
+    .fc-nota {
+      margin-top: 16px;
+      font-family: var(--mono);
+      font-size: 10.5px; letter-spacing: .06em;
+      text-align: center;
+      color: rgba(255,255,255,.4);
+      line-height: 1.6;
+    }
+
+    /* Estado de agradecimento */
+    .fc-obrigado { display: none; text-align: center; padding: 12px 0 4px; }
+    .fc-card.enviado .fc-form { display: none; }
+    .fc-card.enviado .fc-obrigado { display: block; }
+    .fc-obrigado-logo {
+      height: 58px; width: auto;
+      margin: 0 auto 30px;
+      display: block;
+      filter: brightness(0) invert(1);
+      opacity: .9;
+    }
+    .fc-obrigado h3 {
+      font-family: var(--serif);
+      font-size: 36px; font-weight: 400; line-height: 1.1;
+      letter-spacing: -.02em;
+      color: var(--white);
+      margin-bottom: 14px;
+    }
+    .fc-obrigado p {
+      font-size: 15px; line-height: 1.6;
+      color: rgba(255,255,255,.65);
+      margin-bottom: 28px;
+    }
+    .fc-obrigado .fc-check {
+      width: 54px; height: 54px;
+      margin: 0 auto 22px;
+      border-radius: 50%;
+      background: rgba(37,211,102,.14);
+      border: 1px solid rgba(37,211,102,.4);
+      display: flex; align-items: center; justify-content: center;
+      color: #25d366;
+    }
+    .fc-obrigado .fc-check svg { width: 26px; height: 26px; }
+    .fc-voltar {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,.22);
+      color: var(--white);
+      font-family: inherit; font-size: 14px;
+      padding: 13px 30px; border-radius: 999px;
+      cursor: pointer; transition: all .2s;
+    }
+    .fc-voltar:hover { border-color: var(--cyan-lt); color: var(--cyan-lt); }
+
+    @media (max-width: 560px) {
+      .fc-card { padding: 34px 22px 28px; }
+      .fc-title { font-size: 25px; }
+      .fc-obrigado h3 { font-size: 29px; }
     }
 
     /* ─────────── WHATSAPP FAB ─────────── */
@@ -1357,13 +1551,13 @@
         Precisão técnica e conformidade legal em cada entrega.
       </p>
       <div class="hero-btns">
-        <a href="#servicos" class="btn-primary">
-          <span>Conheça nossos serviços</span>
+        <a href="#contato" class="btn-primary">
+          <span>Entre em contato</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
         </a>
-        <a href="#contato" class="btn-ghost">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-          <span>Agendar reunião</span>
+        <a href="#servicos" class="btn-ghost">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>
+          <span>Conheça nossos serviços</span>
         </a>
       </div>
 
@@ -1390,22 +1584,22 @@
       </div>
       <a href="#servicos">
         <span class="h-num">01</span>
-        <span class="h-title">Revisional Bancário<small>Juros, tarifas e encargos abusivos</small></span>
+        <span class="h-title">INSS de Obras<small>Aferição via SERO · CND</small></span>
         <span class="h-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
       </a>
       <a href="#servicos">
         <span class="h-num">02</span>
-        <span class="h-title">Cálculos Trabalhistas<small>Da inicial à liquidação no PJ-e</small></span>
-        <span class="h-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
-      </a>
-      <a href="#servicos">
-        <span class="h-num">03</span>
         <span class="h-title">Regularização de Imóveis<small>IMPLURB, Receita, Prefeitura, Cartório</small></span>
         <span class="h-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
       </a>
       <a href="#servicos">
+        <span class="h-num">03</span>
+        <span class="h-title">Revisional Bancário<small>Juros, tarifas e encargos abusivos</small></span>
+        <span class="h-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
+      </a>
+      <a href="#servicos">
         <span class="h-num">04</span>
-        <span class="h-title">INSS de Obras<small>Aferição via SERO · CND</small></span>
+        <span class="h-title">Cálculos Trabalhistas<small>Da inicial à liquidação no PJ-e</small></span>
         <span class="h-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
       </a>
     </div>
@@ -2011,7 +2205,24 @@
     </div>
 
     <div class="contato-grid">
-      <div class="reveal">
+      <div class="contato-cta reveal">
+        <h3>Agende uma reunião com nossa equipe.</h3>
+        <p>Queremos entender o seu caso e apresentar como podemos ajudar a alcançar o objetivo com precisão e segurança jurídica.</p>
+        <a href="https://wa.me/5592991564219?text=Olá!%20Gostaria%20de%20agendar%20uma%20reunião%20com%20a%20ACE%20Consultoria." class="btn-whatsapp" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>
+          <span>Chamar no WhatsApp</span>
+        </a>
+        <button type="button" class="btn-email" onclick="abrirFormContato()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+          <span>Enviar mensagem</span>
+        </button>
+
+        <div class="contato-meta">
+          <span class="dot"></span>
+          <span>Respondemos em até 24h úteis</span>
+        </div>
+      </div>
+      <div class="reveal" data-delay="1">
         <div class="contato-list">
           <a href="tel:+5592991564219" class="contato-card">
             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
@@ -2047,23 +2258,6 @@
         </div>
       </div>
 
-      <div class="contato-cta reveal" data-delay="1">
-        <h3>Agende uma reunião com nossa equipe.</h3>
-        <p>Queremos entender o seu caso e apresentar como podemos ajudar a alcançar o objetivo com precisão e segurança jurídica.</p>
-        <a href="https://wa.me/5592991564219?text=Olá!%20Gostaria%20de%20agendar%20uma%20reunião%20com%20a%20ACE%20Consultoria." class="btn-whatsapp" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>
-          <span>Chamar no WhatsApp</span>
-        </a>
-        <a href="mailto:faleconosco@acecalculos.com.br?subject=Solicitação%20de%20reunião" class="btn-email">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-          <span>Enviar e-mail</span>
-        </a>
-
-        <div class="contato-meta">
-          <span class="dot"></span>
-          <span>Respondemos em até 24h úteis</span>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -2100,6 +2294,60 @@
     <span>© 2026 ACE Antunes Consultoria Empresarial</span>
   </div>
 </footer>
+
+<!-- ═════════════ MODAL — FORMULÁRIO DE CONTATO ═════════════ -->
+<div class="fc-overlay" id="fcOverlay" role="dialog" aria-modal="true" aria-labelledby="fcTitulo">
+  <div class="fc-card" id="fcCard">
+    <button type="button" class="fc-close" onclick="fecharFormContato()" aria-label="Fechar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+
+    <form class="fc-form" id="fcForm" novalidate>
+      <h3 class="fc-title" id="fcTitulo">Como posso <em>te ajudar?</em></h3>
+      <p class="fc-sub">Conte rapidamente o seu caso. Retornamos em até 24 horas úteis.</p>
+
+      <div class="fc-field" id="fcCampoNome">
+        <input type="text" class="fc-input" id="fcNome" name="nome" placeholder="Seu nome" autocomplete="name" />
+        <div class="fc-erro">Informe o seu nome</div>
+      </div>
+
+      <div class="fc-field" id="fcCampoEmail">
+        <input type="email" class="fc-input" id="fcEmail" name="email" placeholder="Seu melhor e-mail" autocomplete="email" />
+        <div class="fc-erro">Informe um e-mail válido</div>
+      </div>
+
+      <div class="fc-field" id="fcCampoFone">
+        <div class="fc-phone">
+          <span class="fc-ddi"><span class="flag">🇧🇷</span> +55</span>
+          <input type="tel" class="fc-input" id="fcFone" name="whatsapp" placeholder="Seu WhatsApp" inputmode="numeric" autocomplete="tel-national" maxlength="15" />
+        </div>
+        <div class="fc-erro">Informe o DDD + número</div>
+      </div>
+
+      <div class="fc-field" id="fcCampoMsg">
+        <textarea class="fc-textarea" id="fcMsg" name="mensagem" placeholder="Digite a sua mensagem"></textarea>
+        <div class="fc-erro">Escreva a sua mensagem</div>
+      </div>
+
+      <button type="submit" class="fc-submit">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>
+        Enviar mensagem
+      </button>
+
+      <p class="fc-nota">Sua mensagem segue direto para o nosso WhatsApp.</p>
+    </form>
+
+    <div class="fc-obrigado">
+      <img src="ACE - Logo 1.png" alt="ACE — Antunes Consultoria Empresarial" class="fc-obrigado-logo" />
+      <div class="fc-check">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+      </div>
+      <h3>Obrigado pelo contato</h3>
+      <p>Entraremos em contato em breve!</p>
+      <button type="button" class="fc-voltar" onclick="fecharFormContato()">Voltar ao site</button>
+    </div>
+  </div>
+</div>
 
 <!-- ═════════════ WHATSAPP FAB ═════════════ -->
 <a href="https://wa.me/5592991564219?text=Olá!%20Vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais." class="whatsapp-fab" target="_blank" rel="noopener" aria-label="WhatsApp">
@@ -2490,6 +2738,102 @@
     document.getElementById('calcValor').addEventListener('input', function () {
       this.value = this.value.replace(/[^0-9.,]/g, '');
     });
+  })();
+
+
+  // ══════════ FORMULÁRIO DE CONTATO ══════════
+  (function () {
+    const WHATSAPP = '5592991564219';
+    const $overlay = document.getElementById('fcOverlay');
+    const $card    = document.getElementById('fcCard');
+    const $form    = document.getElementById('fcForm');
+    let scrollTravado = 0;
+
+    window.abrirFormContato = function () {
+      $card.classList.remove('enviado');
+      scrollTravado = window.scrollY;
+      $overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => document.getElementById('fcNome').focus(), 280);
+    };
+
+    window.fecharFormContato = function () {
+      $overlay.classList.remove('open');
+      document.body.style.overflow = '';
+      setTimeout(() => {
+        $card.classList.remove('enviado');
+        $form.reset();
+        $form.querySelectorAll('.fc-field').forEach(f => f.classList.remove('invalido'));
+      }, 300);
+    };
+
+    $overlay.addEventListener('click', e => { if (e.target === $overlay) window.fecharFormContato(); });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && $overlay.classList.contains('open')) window.fecharFormContato();
+    });
+
+    // Máscara de telefone: (99) 99999-9999
+    const $fone = document.getElementById('fcFone');
+    $fone.addEventListener('input', function () {
+      let v = this.value.replace(/\D/g, '').slice(0, 11);
+      if (v.length > 6)      v = '(' + v.slice(0,2) + ') ' + v.slice(2,7) + '-' + v.slice(7);
+      else if (v.length > 2) v = '(' + v.slice(0,2) + ') ' + v.slice(2);
+      else if (v.length > 0) v = '(' + v;
+      this.value = v;
+    });
+
+    // Limpa o aviso de erro assim que o visitante corrige o campo
+    $form.querySelectorAll('.fc-input, .fc-textarea').forEach(el => {
+      el.addEventListener('input', () => el.closest('.fc-field').classList.remove('invalido'));
+    });
+
+    function valida(idCampo, ok) {
+      const el = document.getElementById(idCampo);
+      el.classList.toggle('invalido', !ok);
+      return ok;
+    }
+
+    $form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const nome  = document.getElementById('fcNome').value.trim();
+      const email = document.getElementById('fcEmail').value.trim();
+      const fone  = document.getElementById('fcFone').value.trim();
+      const msg   = document.getElementById('fcMsg').value.trim();
+      const digitos = fone.replace(/\D/g, '');
+
+      let ok = true;
+      ok = valida('fcCampoNome',  nome.length >= 2) && ok;
+      ok = valida('fcCampoEmail', /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) && ok;
+      ok = valida('fcCampoFone',  digitos.length >= 10) && ok;
+      ok = valida('fcCampoMsg',   msg.length >= 3) && ok;
+      if (!ok) return;
+
+      const texto =
+        'Olá! Vim pelo site da ACE e gostaria de falar com vocês.\n\n' +
+        '*Nome:* ' + nome + '\n' +
+        '*E-mail:* ' + email + '\n' +
+        '*WhatsApp:* +55 ' + fone + '\n\n' +
+        '*Mensagem:*\n' + msg;
+
+      // Conversão — Leads do Formulário
+      if (typeof gtag === 'function') {
+        gtag('event', 'conversion', { 'send_to': 'AW-18388636462/xz50CKyQ5eMcEK6mscBE' });
+      }
+      // Conversão — Cliques no WhatsApp (o envio da mensagem é o clique de contato)
+      if (typeof gtag_report_conversion === 'function') gtag_report_conversion();
+
+      window.open('https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(texto), '_blank', 'noopener');
+
+      $card.classList.add('enviado');
+      $card.scrollIntoView({ block: 'nearest' });
+    });
+
+    // Conversão do Google Ads em qualquer clique de link do WhatsApp
+    document.addEventListener('click', function (e) {
+      const alvo = e.target.closest && e.target.closest('a[href*="wa.me"], a[href*="api.whatsapp.com"]');
+      if (alvo && typeof gtag_report_conversion === 'function') gtag_report_conversion();
+    }, true);
   })();
 
   // ── Navbar scroll state
