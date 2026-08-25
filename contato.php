@@ -28,8 +28,49 @@ function campo($nome) {
 function cabecalho_seguro($v) {
     return str_replace(array("\r", "\n", "\0"), ' ', $v);
 }
-function assunto_utf8($texto) {
-    return '=?UTF-8?B?' . base64_encode($texto) . '?=';
+/**
+ * Codifica texto para cabeçalho de e-mail (RFC 2047). Só codifica quando tem
+ * acento; quebra em pedaços de no máximo 75 caracteres, como o padrão exige,
+ * sem partir caractere multibyte no meio.
+ */
+function mime_cabecalho($texto) {
+    $texto = cabecalho_seguro($texto);
+    if (preg_match('/^[\x20-\x7E]*$/', $texto)) {
+        return $texto; // ASCII puro: não precisa codificar
+    }
+    $partes = array();
+    $atual  = '';
+    $total  = mb_strlen($texto, 'UTF-8');
+    for ($i = 0; $i < $total; $i++) {
+        $ch = mb_substr($texto, $i, 1, 'UTF-8');
+        // 45 bytes viram 60 em base64, e 60 + '=?UTF-8?B?' + '?=' cabe nos 75
+        if (strlen($atual . $ch) > 45) {
+            $partes[] = $atual;
+            $atual = '';
+        }
+        $atual .= $ch;
+    }
+    if ($atual !== '') {
+        $partes[] = $atual;
+    }
+    $saida = array();
+    foreach ($partes as $parte) {
+        $saida[] = '=?UTF-8?B?' . base64_encode($parte) . '?=';
+    }
+    return implode("\r\n ", $saida);
+}
+
+/**
+ * Nome que aparece no From/Reply-To. Sem acento vai entre aspas (resolve
+ * vírgula, parêntese e afins); com acento vira encoded-word, que não pode
+ * ficar entre aspas.
+ */
+function nome_exibicao($texto) {
+    $texto = cabecalho_seguro($texto);
+    if (preg_match('/^[\x20-\x7E]*$/', $texto)) {
+        return '"' . str_replace(array('\\', '"'), array('\\\\', '\\"'), $texto) . '"';
+    }
+    return mime_cabecalho($texto);
 }
 
 if (!isset($_SERVER['REQUEST_METHOD']) || $_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -80,14 +121,14 @@ $corpo = "Nova mensagem pelo formulário do site acecalculos.com.br\n"
        . "────────────────────────────────────────\n"
        . "Responda este e-mail para falar direto com a pessoa.\n";
 
-$cabecalhos = "From: ACE Cálculos (site) <" . $REMETENTE . ">\r\n"
-            . "Reply-To: " . cabecalho_seguro($nome) . " <" . cabecalho_seguro($email) . ">\r\n"
+$cabecalhos = "From: " . nome_exibicao('ACE Cálculos (site)') . " <" . $REMETENTE . ">\r\n"
+            . "Reply-To: " . nome_exibicao($nome) . " <" . cabecalho_seguro($email) . ">\r\n"
             . "MIME-Version: 1.0\r\n"
             . "Content-Type: text/plain; charset=UTF-8\r\n"
             . "Content-Transfer-Encoding: 8bit\r\n"
             . "X-Mailer: site-ace";
 
-$assunto = assunto_utf8('Contato pelo site — ' . $nome);
+$assunto = mime_cabecalho('Contato pelo site — ' . $nome);
 
 $enviado = @mail($DESTINO, $assunto, $corpo, $cabecalhos, '-f' . $REMETENTE);
 
