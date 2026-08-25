@@ -10,11 +10,23 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'AW-18388636462');
+    gtag('config', 'AW-18388636462', { 'allow_enhanced_conversions': true });
   </script>
 
-  <!-- Event snippet for Cliques no Whatsapp conversion page -->
+  <!-- Ações de conversão do Google Ads (Metas > Conversões > [ação] > Configurar tag) -->
   <script>
+  var ACE_CONV = {
+    // Contatos — cliques no WhatsApp (ativa)
+    whatsapp: 'AW-18388636462/erIpCO6p4uMcEK6mscBE',
+    // Enviar formulário de lead (ação 7725467692)
+    formLead: 'AW-18388636462/xz50CKyQ5eMcEK6mscBE',
+    // Solicitar cotação (ação 7724702788): deixe vazio enquanto a ação estiver
+    // configurada por visita de URL. Depois de trocá-la para "código" no Google Ads,
+    // cole aqui o rótulo gerado (AW-18388636462/xxxxxxxx) que ela passa a disparar junto.
+    cotacao: ''
+  };
+
+  // Conversão de clique no WhatsApp
   function gtag_report_conversion(url) {
     var callback = function () {
       if (typeof(url) != 'undefined') {
@@ -22,10 +34,33 @@
       }
     };
     gtag('event', 'conversion', {
-        'send_to': 'AW-18388636462/erIpCO6p4uMcEK6mscBE',
+        'send_to': ACE_CONV.whatsapp,
         'event_callback': callback
     });
     return false;
+  }
+
+  // Conversão de formulário enviado, com Conversões Otimizadas (Enhanced Conversions).
+  // Chamada apenas quando o formulário de contato passa na validação e é enviado de fato.
+  function ace_conversao_formulario(dados) {
+    if (typeof gtag !== 'function') return;
+    dados = dados || {};
+
+    // Dados do usuário em texto simples — o próprio Google faz o hash antes de usar.
+    var userData = {};
+    if (dados.email) userData.email = String(dados.email).trim().toLowerCase();
+    if (dados.telefone) {
+      var digitos = String(dados.telefone).replace(/\D/g, '');
+      if (digitos.length >= 10) userData.phone_number = '+55' + digitos; // formato E.164
+    }
+    if (userData.email || userData.phone_number) gtag('set', 'user_data', userData);
+
+    // Evento de "formulário enviado" no dataLayer, para uso como gatilho caso
+    // um container do Google Tag Manager venha a ser instalado no site.
+    window.dataLayer.push({ event: 'form_lead_enviado' });
+
+    gtag('event', 'conversion', { 'send_to': ACE_CONV.formLead });
+    if (ACE_CONV.cotacao) gtag('event', 'conversion', { 'send_to': ACE_CONV.cotacao });
   }
   </script>
 
@@ -2817,9 +2852,9 @@
         '*WhatsApp:* +55 ' + fone + '\n\n' +
         '*Mensagem:*\n' + msg;
 
-      // Conversão — Leads do Formulário
-      if (typeof gtag === 'function') {
-        gtag('event', 'conversion', { 'send_to': 'AW-18388636462/xz50CKyQ5eMcEK6mscBE' });
+      // Conversão — formulário de lead enviado (com Conversões Otimizadas)
+      if (typeof ace_conversao_formulario === 'function') {
+        ace_conversao_formulario({ email: email, telefone: fone });
       }
       // Conversão — Cliques no WhatsApp (o envio da mensagem é o clique de contato)
       if (typeof gtag_report_conversion === 'function') gtag_report_conversion();
