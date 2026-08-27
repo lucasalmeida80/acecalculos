@@ -15,15 +15,15 @@
 
   <!-- Ações de conversão do Google Ads (Metas > Conversões > [ação] > Configurar tag) -->
   <script>
+  // A ação "Solicitar cotação" (7724702788) foi arquivada em 27/08/2026. Estava
+  // configurada por visita de URL em #contato, que em site de página única nunca
+  // recarrega — nunca disparou. Não recriar apontando para o envio do formulário:
+  // contaria o mesmo lead duas vezes, junto com "Enviar formulário de lead".
   var ACE_CONV = {
     // Contatos — cliques no WhatsApp (ativa)
     whatsapp: 'AW-18388636462/erIpCO6p4uMcEK6mscBE',
     // Enviar formulário de lead (ação 7725467692)
-    formLead: 'AW-18388636462/xz50CKyQ5eMcEK6mscBE',
-    // Solicitar cotação (ação 7724702788): deixe vazio enquanto a ação estiver
-    // configurada por visita de URL. Depois de trocá-la para "código" no Google Ads,
-    // cole aqui o rótulo gerado (AW-18388636462/xxxxxxxx) que ela passa a disparar junto.
-    cotacao: ''
+    formLead: 'AW-18388636462/xz50CKyQ5eMcEK6mscBE'
   };
 
   // Conversão de clique no WhatsApp
@@ -60,7 +60,6 @@
     window.dataLayer.push({ event: 'form_lead_enviado' });
 
     gtag('event', 'conversion', { 'send_to': ACE_CONV.formLead });
-    if (ACE_CONV.cotacao) gtag('event', 'conversion', { 'send_to': ACE_CONV.cotacao });
   }
   </script>
 
