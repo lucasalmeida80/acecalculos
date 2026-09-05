@@ -1,7 +1,39 @@
 {
-  "periodoAtual": "2026-08",
+  "periodoAtual": "2026-09",
   "nota": "Adicionar novo período no início de cada mês. Colunas: uni=Res.Unifamiliar, multi=Res.Multifamiliar, comercial=Comercial Salas/Lojas, galpao=Galpão Industrial, popular=Casa Popular, conjunto=Conj.Hab.Popular.",
   "periodos": {
+    "2026-09": {
+      "descricao": "Setembro/2026",
+      "vau": {
+        "AC": { "uni": 4242.10, "multi": 3585.47, "comercial": 3970.60, "galpao": 1835.61, "popular": 2143.31, "conjunto": 2143.31 },
+        "AL": { "uni": 2558.21, "multi": 2204.66, "comercial": 2466.05, "galpao": 1151.86, "popular": 1362.40, "conjunto": 1362.40 },
+        "AM": { "uni": 4242.10, "multi": 3585.47, "comercial": 3970.60, "galpao": 1835.61, "popular": 2143.31, "conjunto": 2143.31 },
+        "AP": { "uni": 3376.99, "multi": 2982.56, "comercial": 3386.00, "galpao": 1609.56, "popular": 1902.20, "conjunto": 1902.20 },
+        "BA": { "uni": 2752.71, "multi": 2307.07, "comercial": 2642.31, "galpao": 1198.83, "popular": 1487.76, "conjunto": 1487.76 },
+        "CE": { "uni": 2878.33, "multi": 2499.51, "comercial": 2845.05, "galpao": 1347.80, "popular": 1695.74, "conjunto": 1695.74 },
+        "DF": { "uni": 2903.96, "multi": 2516.31, "comercial": 2879.66, "galpao": 1287.94, "popular": 1588.55, "conjunto": 1588.55 },
+        "ES": { "uni": 3403.21, "multi": 2895.38, "comercial": 3226.46, "galpao": 1462.06, "popular": 1916.54, "conjunto": 1916.54 },
+        "GO": { "uni": 2845.90, "multi": 2376.01, "comercial": 2704.95, "galpao": 1264.09, "popular": 1518.21, "conjunto": 1518.21 },
+        "MA": { "uni": 2348.61, "multi": 2246.52, "comercial": 2294.07, "galpao": 1094.67, "popular": 1312.57, "conjunto": 1312.57 },
+        "MG": { "uni": 3071.19, "multi": 2664.40, "comercial": 2991.56, "galpao": 1316.03, "popular": 1725.92, "conjunto": 1725.92 },
+        "MS": { "uni": 2252.88, "multi": 1887.01, "comercial": 2345.43, "galpao": 1057.28, "popular": 1292.60, "conjunto": 1292.60 },
+        "MT": { "uni": 4007.38, "multi": 3482.69, "comercial": 3957.52, "galpao": 1740.33, "popular": 2222.33, "conjunto": 2222.33 },
+        "PA": { "uni": 2917.27, "multi": 2548.39, "comercial": 2869.22, "galpao": 1356.84, "popular": 1655.36, "conjunto": 1655.36 },
+        "PB": { "uni": 2097.99, "multi": 1859.16, "comercial": 2089.85, "galpao": 960.51, "popular": 1135.38, "conjunto": 1135.38 },
+        "PE": { "uni": 2799.33, "multi": 2341.09, "comercial": 2656.82, "galpao": 1215.84, "popular": 1553.08, "conjunto": 1553.08 },
+        "PI": { "uni": 2348.61, "multi": 2025.47, "comercial": 2294.07, "galpao": 1094.67, "popular": 1312.57, "conjunto": 1312.57 },
+        "PR": { "uni": 3340.01, "multi": 2844.92, "comercial": 3253.13, "galpao": 1458.10, "popular": 1827.31, "conjunto": 1827.31 },
+        "RJ": { "uni": 3101.08, "multi": 2669.62, "comercial": 3036.43, "galpao": 1378.73, "popular": 1731.76, "conjunto": 1731.76 },
+        "RN": { "uni": 2651.16, "multi": 2276.11, "comercial": 2532.87, "galpao": 1217.66, "popular": 1530.91, "conjunto": 1530.91 },
+        "RO": { "uni": 2958.50, "multi": 2692.13, "comercial": 3044.81, "galpao": 1357.59, "popular": 1739.04, "conjunto": 1739.04 },
+        "RR": { "uni": 3682.39, "multi": 3156.13, "comercial": 3595.77, "galpao": 1723.59, "popular": 1913.40, "conjunto": 1913.40 },
+        "RS": { "uni": 3467.09, "multi": 3069.41, "comercial": 3639.91, "galpao": 1412.37, "popular": 1854.69, "conjunto": 1854.69 },
+        "SC": { "uni": 3498.08, "multi": 2968.24, "comercial": 3410.76, "galpao": 1577.81, "popular": 1994.92, "conjunto": 1994.92 },
+        "SE": { "uni": 2548.48, "multi": 2308.47, "comercial": 2585.44, "galpao": 1188.74, "popular": 1396.57, "conjunto": 1396.57 },
+        "SP": { "uni": 2705.27, "multi": 2359.48, "comercial": 2685.96, "galpao": 1265.41, "popular": 1517.13, "conjunto": 1517.13 },
+        "TO": { "uni": 2845.90, "multi": 2376.01, "comercial": 2704.95, "galpao": 1264.09, "popular": 1518.21, "conjunto": 1518.21 }
+      }
+    },
     "2026-08": {
       "descricao": "Agosto/2026",
       "vau": {
