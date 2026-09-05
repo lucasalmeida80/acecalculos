@@ -7,3 +7,6 @@ index claude design.html
 
 # Documentos de solicitação de alterações
 *.docx
+
+# Handoff com credenciais em texto puro — NUNCA versionar (repo é público)
+HANDOFF.md
