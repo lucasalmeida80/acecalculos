@@ -24,14 +24,14 @@
         "PI": { "uni": 2366.02, "multi": 2040.48, "comercial": 2311.07, "galpao": 1102.79, "popular": 1322.30, "conjunto": 1322.30 },
         "PR": { "uni": 3364.77, "multi": 2866.01, "comercial": 3277.25, "galpao": 1468.91, "popular": 1840.85, "conjunto": 1840.85 },
         "RJ": { "uni": 3124.06, "multi": 2689.41, "comercial": 3058.94, "galpao": 1388.95, "popular": 1744.59, "conjunto": 1744.59 },
-        "RN": { "uni": 2292.98, "multi": 2292.98, "comercial": 2551.65, "galpao": 1226.69, "popular": 1542.26, "conjunto": 1542.26 },
+        "RN": { "uni": 2670.81, "multi": 2292.98, "comercial": 2551.65, "galpao": 1226.69, "popular": 1542.26, "conjunto": 1542.26 },
         "RO": { "uni": 2980.43, "multi": 2712.08, "comercial": 3067.38, "galpao": 1367.65, "popular": 1751.94, "conjunto": 1751.94 },
         "RR": { "uni": 3709.69, "multi": 3179.52, "comercial": 3622.42, "galpao": 1736.37, "popular": 1927.58, "conjunto": 1927.58 },
         "RS": { "uni": 3492.79, "multi": 3092.16, "comercial": 3666.89, "galpao": 1422.84, "popular": 1868.44, "conjunto": 1868.44 },
         "SC": { "uni": 3524.01, "multi": 2990.25, "comercial": 3436.05, "galpao": 1589.51, "popular": 2009.71, "conjunto": 2009.71 },
         "SE": { "uni": 2567.37, "multi": 2325.58, "comercial": 2604.60, "galpao": 1197.55, "popular": 1406.92, "conjunto": 1406.92 },
         "SP": { "uni": 2725.32, "multi": 2376.97, "comercial": 2705.87, "galpao": 1274.79, "popular": 1528.38, "conjunto": 1528.38 },
-        "TO": { "uni": 2393.62, "multi": 2393.62, "comercial": 2725.00, "galpao": 1273.46, "popular": 1529.46, "conjunto": 1529.46 }
+        "TO": { "uni": 2867.00, "multi": 2393.62, "comercial": 2725.00, "galpao": 1273.46, "popular": 1529.46, "conjunto": 1529.46 }
       }
     },
     "2026-10": {
